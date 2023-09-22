@@ -65,7 +65,7 @@ class BarRun
         calculateMoney(entranceFee,"   Entrance Fee" );
 
         //difficulty
-        System.out.println("\n\n\n\n\n\n\n\n\nChoose the difficulty\n vodka: 1 \n beer: 2 \n cocktails: 3 ");
+        System.out.println("\n\n\n\n\n\n\n\n\nChoose the difficulty\n vodka: 1 (easy) \n beer: 2 (medium) \n cocktails: 3 (hard) --> current record: 24 days ");
         System.out.println(BarRun.chooseDifficulty());
         System.out.println("Your current balance is: " + myMoney + "€");
 
