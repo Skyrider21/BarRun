@@ -10,7 +10,7 @@ import java.util.Objects;
 class BarRun
 {
     //counter
-    static String MyName = "Niklas";
+    static String MyName = "";
     static int counter = 5, a = 0;
     static int[] countdown = {5, 4, 3, 2, 1};
     static float last_chance= 0.9f;
@@ -42,6 +42,10 @@ class BarRun
             new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException, InterruptedException {
+
+        //name input
+        System.out.println("How would you like to be called?");
+        MyName = reader.readLine();
 
         //timer
         while (counter > 0) {
