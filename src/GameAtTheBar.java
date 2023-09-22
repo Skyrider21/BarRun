@@ -32,6 +32,7 @@ class BarRun
     static boolean maniac = false;
     static String pastAction = "";
     static int backDownToEarthJudgement = 0;
+    static String dieOfHungerMessage = "";
 
     //difficulty
     static String difficulty;
@@ -67,7 +68,7 @@ class BarRun
         //difficulty
         System.out.println("\n\n\n\n\n\n\n\n\nChoose the difficulty\n vodka: 1 (easy) \n beer: 2 (medium) \n cocktails: 3 (hard) --> current record: 24 days ");
         System.out.println(BarRun.chooseDifficulty());
-        System.out.println("Your current balance is: " + myMoney + "€");
+        System.out.println("Your current balance is: " + myMoney + "$");
 
         //game loop
         while (health > 0){
@@ -82,13 +83,18 @@ class BarRun
           if(myMoney < 0) {
               health = health - 20;
               pastAction = "YOU ARE STARVING!!!";
+
+              if(health <= 0){
+                  dieOfHungerMessage = "You died because you couldn't buy food for the next day...\n";
+                  continue;
+              }
           }
 
           //choice menu
           System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
           System.out.println("DAY: "+days);
           System.out.println("HEALTH: "+health);
-          System.out.println("MONEY: "+myMoney);
+          System.out.println("MONEY: "+myMoney+"$");
           System.out.println("\n" + pastAction);
           System.out.println("\nwould you like to: \n Buy a "+ difficulty + ": 'b'\n Flip a coin with the bartender: 'f' \n Wash dishes for money: 'w' \n Ask the pretty girl next to you for her number: 'a'");
           String selection = reader.readLine();
@@ -100,23 +106,23 @@ class BarRun
 
               health = health + 5;
               alcoholLevel = alcoholLevel + 1;
-              pastAction = "You bought a "+ difficulty;
+              pastAction = "You bought a "+ difficulty+"\nhealth +5";
           }
           else if (Objects.equals(selection, "f")){
               System.out.println("\nFlip a coin");
               if(maniac)
               {
-                  pastAction = "Ohhhh you lost again!!!";
+                  pastAction = "Ohhhh you lost again!!!\n-5$";
                   myMoney = myMoney -5;
               }
               if(randomNumber(50))
               {
-                  pastAction = "Haha too easy!!!";
+                  pastAction = "Haha too easy!!!\n+5$";
                   myMoney = myMoney +5;
               }
               else
               {
-                  pastAction =":/ fair game..";
+                  pastAction =":/ fair game..\n-5$";
                   myMoney = myMoney -5;
               }
 
@@ -130,20 +136,20 @@ class BarRun
 
               health = health - 20;
               myMoney = myMoney + 10 - alcoholLevel; //5-10
-              pastAction = "you washed succesfully starting to feel better";
+              pastAction = "you washed succesfully feeling sobering up\nhealth -20\n+"+(10-alcoholLevel)+"$";
           }
           else if (Objects.equals(selection, "a")) {
               System.out.println("\nAsk for number");
 
               if(maniac)
               {
-                  pastAction = "Calm down crazy guy";
+                  pastAction = "Calm down crazy guy\n-2$";
                   myMoney -= 2;
               }
 
               else if(randomNumber(80))
               {
-                  pastAction = "you got it congrats!";
+                  pastAction = "you got it congrats!\n health +20";
                   health = health + 20;
                   backDownToEarthJudgement +=1;
                   alcoholLevel -=1;
@@ -151,7 +157,7 @@ class BarRun
               }
               else {
                   health = health -5;
-                  pastAction = "Sorry :( not this time you should drink more...";
+                  pastAction = "Sorry :( not this time you should drink more...\nhealth -5";
               }
 
 
@@ -175,10 +181,11 @@ class BarRun
         }
 
         //prints buy history
+        System.out.println("\n"+dieOfHungerMessage+"---------------------\n");
         for (String s : historyList) {
-            System.out.println(s);
+            System.out.println(s+"$");
         }
-        System.out.println("---------------------\n" + myMoney +"€");
+        System.out.println("---------------------\n" + myMoney +"$");
         System.out.println("GAME OVER!!! YOU SURVIVED "+days+" DAYS");
 
     }
