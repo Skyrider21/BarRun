@@ -17,9 +17,9 @@ class BarRun
 
     //Money
     static float myMoney = 51.0f;
-    static float[] beerPrices = {1.0f, 4.0f, 6.0f,8.0f};
+    static float[] beerPrices = {1.0f, 4.0f, 6.0f,8.0f}; // <---- Array
     static int entranceFee = 20;
-    static ArrayList<String> historyList  = new ArrayList<>();
+    static ArrayList<String> historyList  = new ArrayList<>(); // <---- List
     static String drinks;
     static float beerPrice;
 
@@ -32,7 +32,7 @@ class BarRun
     static boolean maniac = false;
     static String pastAction = "";
     static int backDownToEarthJudgement = 0;
-    static String dieOfHungerMessage = "";
+    static String deathMessage = "GAME OVER You lost all your lives";
 
     //difficulty
     static String difficulty;
@@ -85,7 +85,7 @@ class BarRun
               pastAction = "YOU ARE STARVING!!!";
 
               if(health <= 0){
-                  dieOfHungerMessage = "You died because you couldn't buy food for the next day...\n";
+                  deathMessage = "You died because you couldn't buy food for the next day...\n";
                   continue;
               }
           }
@@ -181,7 +181,7 @@ class BarRun
         }
 
         //prints buy history
-        System.out.println("\n"+dieOfHungerMessage+"---------------------\n");
+        System.out.println("\n"+deathMessage+"---------------------\n");
         for (String s : historyList) {
             System.out.println(s+"$");
         }
